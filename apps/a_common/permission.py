@@ -69,7 +69,7 @@ def is_superuser(func):
 
 
 def has_permission_manage_role(role: RoleDB, user: UserDB) -> bool:
-    """ 查询是否有对group操作的权限，这里比较特殊，是通过 group 来判断group """
+    """ 查询是否有对role操作的权限，这里比较特殊，是通过role来判断role """
     if role is None or user is None:
         return False
     

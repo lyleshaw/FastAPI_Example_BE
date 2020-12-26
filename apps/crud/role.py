@@ -35,8 +35,8 @@ def get_role_under_user(session: Session, user: UserDB, page_info: PageInfo) -> 
     
     query = session.query(RoleDB)
     condition_list = [RoleDB.id.in_(user.role_id_set)]
-    for group_id in user.role_id_set:
-        condition_list.append(RoleDB.grand_id.like(f'%|{group_id}|%'))
+    for role_id in user.role_id_set:
+        condition_list.append(RoleDB.grand_id.like(f'%|{role_id}|%'))
     
     query = query.filter(or_many_condition(condition_list))
     pagination = Pagination(query, page_info=page_info)
@@ -59,6 +59,6 @@ def add_role(session: Session, data: RoleSerializer) -> RoleDB:
             grand_id = f'{parent_grand_id}{data.parent_id}|'
         else:
             grand_id = f'|{data.parent_id}|'
-    group = RoleDB(name=data.name, parent_id=data.parent_id or 0, grand_id=grand_id)
-    session.add(group)
-    return group
+    role = RoleDB(name=data.name, parent_id=data.parent_id or 0, grand_id=grand_id)
+    session.add(role)
+    return role

@@ -77,7 +77,7 @@ class ManagerCreateUser(CreateUser):
                 {
                     "sex": 1,
                     'name': '小明',
-                    "password": "123123",
+                    "password": "",
                     "phone": "13218655818",
                 }
         }

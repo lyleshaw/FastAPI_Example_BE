@@ -17,10 +17,6 @@ from apps.serializer.user import BaseUserSerializer, CreateUser
 from utils.time import timer
 
 
-def is_replicate_student_id(session: Session, user_id: str) -> bool:
-    return fast_count(session.query(UserDB).filter(UserDB.id == user_id)) > 0
-
-
 def add_user(session: Session, user_data: CreateUser) -> UserDB:
     user = UserDB(
         name=user_data.name,
@@ -139,7 +135,7 @@ def common_user_search_with_permission_check(manager: UserDB, query: Query, sess
     from apps.a_common.permission import has_permission_manage_role
     
     if params.role_id is None:
-        return None, InvalidParamError('请选择用户组')
+        return None, InvalidParamError('请选择角色')
     
     if has_permission_manage_role(get_role_by_id(session=session, i=params.role_id), manager):
         query = query.filter(User2RoleDB.role_id == params.role_id)

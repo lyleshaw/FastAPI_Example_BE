@@ -37,7 +37,6 @@ def test_get_users_by_role_id_query():
         role1 = generate_role()
         session.add_all((user1, user2, user3, role1))
         session.flush()
-        print("ids", user1.id, user2.id, user3.id, role1.id)
         session.add(User2RoleDB(user_id=user1.id, role_id=role1.id))
         session.add(User2RoleDB(user_id=user2.id, role_id=role1.id))
         session.commit()

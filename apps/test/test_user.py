@@ -1,8 +1,10 @@
 from apps.crud.user import get_user_with_permission_and_group_by_id
 from apps.model.user import UserDB
 from apps.test import assert_response_fail, assert_response_success, clean_all, generate_permission, generate_permission2role, generate_user, generate_user2role, generate_role, get_client, get_session_local
+from apps.view.user import user_prefix
+from config import API_PREFIX
 
-api_prefix = "/v1/api/users"
+api_prefix = f"{API_PREFIX}/{user_prefix}"
 
 right_user_data = {
     'sex': 1,

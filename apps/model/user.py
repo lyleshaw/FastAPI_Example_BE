@@ -14,6 +14,7 @@ class UserDB(Base):
     __tablename__ = 'user'
     
     id = Column(Integer(), primary_key=True)
+    phone = Column(VARCHAR(126), server_default='', index=True, unique=True)
     password = Column(VARCHAR(126))
     is_superuser = Column(Boolean, server_default=text('False'))
     create_at = Column(Integer, default=int_timestamp)
@@ -22,7 +23,6 @@ class UserDB(Base):
     
     name = Column(VARCHAR(126), nullable=False)
     sex = Column(SMALLINT)
-    phone = Column(VARCHAR(126), server_default='')
     address = Column(VARCHAR(255), server_default='')
     nation = Column(SMALLINT)
     birthday = Column(Integer)

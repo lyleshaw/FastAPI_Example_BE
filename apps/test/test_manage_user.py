@@ -23,13 +23,6 @@ def teardown_function():
     """ 这个文件下的每个测试运行之后，都会执行这个函数 """
 
 
-def test_search_user_must_fill_organization_id():
-    with override_get_user(is_superuser=True):
-        client = get_client()
-        response = client.get(f'{api_prefix}/')
-        assert_response_fail(response)
-
-
 def test_search_user_search():
     with get_session_local() as session:
         role = generate_role()
